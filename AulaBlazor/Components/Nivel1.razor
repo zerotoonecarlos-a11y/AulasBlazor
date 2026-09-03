@@ -1,0 +1,17 @@
+﻿@page "/nivel1"
+@rendermode InteractiveServer
+
+@using AulasBlazor.Models
+
+
+<h3>Nivel1</h3>
+
+<div style="padding:20px; background-color:@styleBackground.BackGroundColor">
+    <input type="color" @bind="styleBackground.BackGroundColor" />"
+</div>
+
+@code {
+    
+    StylerColor styleBackground = new StylerColor();
+
+}

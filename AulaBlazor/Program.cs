@@ -1,4 +1,4 @@
-using AulaBind.Components;
+using AulasBlazor.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
