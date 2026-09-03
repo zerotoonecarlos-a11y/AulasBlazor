@@ -1,0 +1,32 @@
+﻿@page "/ExemploBindrazor"
+@rendermode InteractiveServer
+
+
+<!-- Exemplo Unidirecional -->
+
+<h3>Binding Bidirecional</h3>
+
+
+<p>Nome em tempo real: <strong>@nome</strong></p>
+
+
+<input type="text" @bind="nome" @bind:event="oninput" />
+
+<br />
+<br />
+
+
+<!-- Exemplo Bidirecional -->
+
+<input type="text" @bind="tipo" />
+
+<br />
+<br />
+
+<p>Nome em tempo exemplo unidirecional: <strong>@tipo</strong></p>
+
+@code {
+    public string tipo = "Olá, mundo!";
+
+    private string nome = "Carlos";
+}
