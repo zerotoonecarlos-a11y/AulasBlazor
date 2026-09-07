@@ -1,11 +1,10 @@
-﻿@page "/accordion-item"
-@rendermode InteractiveServer
-
-<Accordion>
-    <AccordionItem Title="Item 1" Content="Conteúdo do item 1" />
-    <AccordionItem Title="Item 2" Content="Conteúdo do item 2" />
-    <AccordionItem Title="Item 3 " Content="Conteúdo do item 3" />
-</Accordion>
+﻿<div @onclick="Toggle">
+    <div>@Title</div>
+    @if (IsExpanded)
+    {
+        <div>@ChildContent</div>
+    }
+</div>
 
 @code {
 
