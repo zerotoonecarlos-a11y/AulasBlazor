@@ -1,0 +1,74 @@
+﻿@page "/lifecycle"
+@implements IDisposable
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+@using System.Timers
+
+<h3>Meus dados</h3>
+
+
+@if (data is null)
+{
+    <p><em>Carregando...</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var item in data)
+        {
+            <li>@item</li>
+        }
+    </ul>    
+}
+
+<button @onclick="RefreshData">Atualizar Dados</button>
+
+@code {
+    private List<string> data;
+    private Timer autoRefreshTimer;
+    private Random random = new Random();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        autoRefreshTimer = new Timer(5000);
+        autoRefreshTimer.Elapsed += async (sender, e) =>
+        {
+            await InvokeAsync(async () =>
+            {
+                await RefreshData();
+            });
+        };
+    }
+
+    private async Task LoadData()
+    {
+        data = await Task.Run(() => GenerateRandomData());
+        StateHasChanged();
+    }
+
+    private List<string> GenerateRandomData()
+    {
+        var items = new List<string>();
+        int itemCount = random.Next(5, 15);
+
+        for (int i = 1; i <= itemCount; i++)
+        {
+            items.Add($"Item {random.Next(100, 999)}");
+        }
+        return items;
+    }
+
+    private async Task RefreshData()
+    {
+        await LoadData();
+        Console.WriteLine("Dados atualizados => RefreshData");
+    }
+
+    public void Dispose()
+    {
+        autoRefreshTimer?.Stop();
+        autoRefreshTimer?.Dispose();
+        Console.WriteLine("Componente descartado e recursos liberados.");
+    }
+}
