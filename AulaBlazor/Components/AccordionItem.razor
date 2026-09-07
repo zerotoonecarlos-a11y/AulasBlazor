@@ -1,0 +1,24 @@
+﻿@page "/accordion-item"
+@rendermode InteractiveServer
+
+<Accordion>
+    <AccordionItem Title="Item 1" Content="Conteúdo do item 1" />
+    <AccordionItem Title="Item 2" Content="Conteúdo do item 2" />
+    <AccordionItem Title="Item 3 " Content="Conteúdo do item 3" />
+</Accordion>
+
+@code {
+
+    [Parameter]
+    public string Title {get; set;}
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool IsExpanded { get; set; }
+
+    private void Toggle()
+    {
+        IsExpanded = !IsExpanded;
+    }
+}
