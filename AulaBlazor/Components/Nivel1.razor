@@ -3,10 +3,14 @@
 
 @using AulasBlazor.Models
 
+<CascadingValue Value="styleBackground">
+    <Nivel2 />
+</CascadingValue>
 
 <h3>Nivel1</h3>
 
 <div style="padding:20px; background-color:@styleBackground.BackGroundColor">
+    Selecione uma cor para o background:
     <input type="color" @bind="styleBackground.BackGroundColor" />"
 </div>
 

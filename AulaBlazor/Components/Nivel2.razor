@@ -1,0 +1,11 @@
+﻿<h3>Nivel2</h3>
+
+<div style="padding:10px; background-color:@styleBackground.BackGroundColor">
+    <p>Componente de Nivel 2</p>
+    <Nivel3 />
+</div>  
+
+@code {
+    [CascadingParameter]
+    public StylerColor styleBackground { get; set; }
+}
